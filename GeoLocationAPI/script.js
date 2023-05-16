@@ -5,7 +5,9 @@ navigator.geolocation.getCurrentPosition(
     const longitude = position.coords.longitude;
     console.log("https://www.google.com/maps/@" + longitude + "," + latitude);
 
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var map = L.map('map').setView(coords, 13);
+
+    coords = [latitude, longitude]
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
