@@ -37,14 +37,14 @@ const inputElevation = document.querySelector('.form__input--elevation');
     // Map Marker Placement
     map.on('click', function(mapEvent) {
       console.log(mapEvent)
+
+      const lat= mapEvent.latlng.lat
+      const lng= mapEvent.latlng.lng  
+
+      L.marker([lat, lng]).addTo(map)
+        .bindPopup('Tim Hortons')
+        .openPopup();
     })
-
-    const lat= mapEvent.latlng.lat
-    const lng= mapEvent.latlng.lng
-
-    L.marker([lat, lng]).addTo(map)
-                .bindPopup('Tim Hortons')
-                .openPopup();
 
   },
   function() {
