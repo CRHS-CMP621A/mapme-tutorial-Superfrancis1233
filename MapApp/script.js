@@ -42,8 +42,16 @@ const inputElevation = document.querySelector('.form__input--elevation');
       const lng= mapEvent.latlng.lng  
 
       L.marker([lat, lng]).addTo(map)
-        .bindPopup('Tim Hortons')
+        .bindPopup(L.popup({
+          maxWidth:250,
+          minWidth:100,
+          autoClose:false,
+          closeOnClick:false,
+          className:'running-popup',
+        }))
+        .setPopupContent('Workout')
         .openPopup();
+
     })
 
   },
