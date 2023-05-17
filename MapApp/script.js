@@ -33,9 +33,24 @@ const inputElevation = document.querySelector('.form__input--elevation');
         .bindPopup('A pretty CSS popup.<br> Easily customizable.')
         .openPopup();
 
+
+    // Map Marker Placement
+    map.on('click', function(mapEvent) {
+      console.log(mapEvent)
+    })
+
+    const lat= mapEvent.latlng.lat
+    const lng= mapEvent.latlng.lng
+
+    L.marker([lat, lng]).addTo(map)
+                .bindPopup('Tim Hortons')
+                .openPopup();
+
   },
   function() {
     alert("Could not get position.");
   }
+
+  
 );
 
