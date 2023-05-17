@@ -13,6 +13,9 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 // Geolocation & Map
 
+  let map;
+  let mapEvent;
+
   navigator.geolocation.getCurrentPosition(
   function (position) {
     // console.log(position);
@@ -35,7 +38,8 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
 
     // Map Marker Placement
-    map.on('click', function(mapEvent) {
+    map.on('click', function(mapE) {
+      mapEvent=mapE;
       console.log(mapEvent)
 
       const lat= mapEvent.latlng.lat
