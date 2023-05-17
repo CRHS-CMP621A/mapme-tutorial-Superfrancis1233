@@ -52,8 +52,8 @@ const inputElevation = document.querySelector('.form__input--elevation');
         .setPopupContent('Workout')
         .openPopup();
 
-      form.classList.remove('hidden');
-      inputDistance.focus();
+        form.classList.remove('hidden');
+        inputDistance.focus();
 
     })
 
