@@ -36,13 +36,11 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
     // Map Marker Placement
     map.on('click', function(mapEvent) {
-      form.classList.remove('hidden');
-      inputDistance.focus();
+      console.log(mapEvent)
 
       const lat= mapEvent.latlng.lat
       const lng= mapEvent.latlng.lng  
 
-      
       L.marker([lat, lng]).addTo(map)
         .bindPopup(L.popup({
           maxWidth:250,
