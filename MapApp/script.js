@@ -69,3 +69,9 @@ form.addEventListener('submit', function(e){
 
     document.getElementById("workoutform").reset();
 })
+
+//Event Listener Toggle form input type change. 
+inputType.addEventListener('change', function(){
+  inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+  inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
+})
