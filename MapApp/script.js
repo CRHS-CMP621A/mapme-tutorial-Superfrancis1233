@@ -66,4 +66,6 @@ form.addEventListener('submit', function(e){
     
     .setPopupContent('Workout')
     .openPopup();
+
+    document.getElementById("workoutform").reset();
 })
