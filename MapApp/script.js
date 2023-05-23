@@ -41,7 +41,6 @@ const inputElevation = document.querySelector('.form__input--elevation');
     map.on('click', function(mapE) {
       mapEvent=mapE;
       console.log(mapEvent)
-
       const lat= mapEvent.latlng.lat
       const lng= mapEvent.latlng.lng  
 
@@ -53,9 +52,9 @@ const inputElevation = document.querySelector('.form__input--elevation');
           closeOnClick:false,
           className:'running-popup',
         }))
+        
         .setPopupContent('Workout')
         .openPopup();
-        document.getElementsByID('running-popup').reset();
 
         form.classList.remove('hidden');
         inputDistance.focus();
