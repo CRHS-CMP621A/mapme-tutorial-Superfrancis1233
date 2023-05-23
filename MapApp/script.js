@@ -39,10 +39,10 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
     // Map Marker Placement
     map.on('click', function(mapE) {
-      mapEvent=mapE;
+      mapEvent = mapE;
       console.log(mapEvent)
-      const lat= mapEvent.latlng.lat
-      const lng= mapEvent.latlng.lng  
+      const lat = mapEvent.latlng.lat
+      const lng = mapEvent.latlng.lng  
 
       L.marker([lat, lng]).addTo(map)
         .bindPopup(L.popup({
