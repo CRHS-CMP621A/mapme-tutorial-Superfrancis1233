@@ -25,7 +25,7 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
     const coords = [latitude, longitude]
 
-    var map = L.map('map').setView(coords, 13);
+    map = L.map('map').setView(coords, 13);
 
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
