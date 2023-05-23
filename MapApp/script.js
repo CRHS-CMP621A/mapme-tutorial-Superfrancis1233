@@ -37,39 +37,29 @@ const inputElevation = document.querySelector('.form__input--elevation');
         .openPopup();
 
 
+    // Map Marker Placement
+    map.on('click', function(mapE) {
+      mapEvent=mapE;
+      console.log(mapEvent)
+      const lat= mapEvent.latlng.lat
+      const lng= mapEvent.latlng.lng  
 
+      L.marker([lat, lng]).addTo(map)
+        .bindPopup(L.popup({
+          maxWidth:250,
+          minWidth:100,
+          autoClose:false,
+          closeOnClick:false,
+          className:'running-popup',
+        }))
+        
+        .setPopupContent('Workout')
+        .openPopup();
 
-    // form event listener to check if submitted/completed
-    form.addEventListener('submit', function(e){
-      e.preventDefault()
-
-      // Map Marker Placement
-      map.on('click', function(mapE) {
-        mapEvent=mapE;
-        console.log(mapEvent)
-        const lat= mapEvent.latlng.lat
-        const lng= mapEvent.latlng.lng  
-
-        L.marker([lat, lng]).addTo(map)
-          .bindPopup(L.popup({
-            maxWidth:250,
-            minWidth:100,
-            autoClose:false,
-            closeOnClick:false,
-            className:'running-popup',
-          }))
-          
-          .setPopupContent('Workout')
-          .openPopup();
-
-          form.classList.remove('hidden');
-          inputDistance.focus();
-          
-      })
-
+        form.classList.remove('hidden');
+        inputDistance.focus();
+        
     })
-
-
 
   },
   function() {
