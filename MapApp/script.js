@@ -45,6 +45,9 @@ const inputElevation = document.querySelector('.form__input--elevation');
       const lat= mapEvent.latlng.lat
       const lng= mapEvent.latlng.lng  
 
+    form.addEventListener('submit', function(e){
+      e.preventDefault()
+  
       L.marker([lat, lng]).addTo(map)
         .bindPopup(L.popup({
           maxWidth:250,
@@ -55,16 +58,9 @@ const inputElevation = document.querySelector('.form__input--elevation');
         }))
         .setPopupContent('Workout')
         .openPopup();
-        document.getElementsByClassName('.running-popup').reset();
 
         form.classList.remove('hidden');
         inputDistance.focus();
-        
-        // form event listener to check if submitted/completed
-        form.addEventListener('submit', function(e){
-          e.preventDefault()
-        
-        })
 
     })
 
