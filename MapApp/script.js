@@ -40,10 +40,8 @@ const inputElevation = document.querySelector('.form__input--elevation');
     // Map Marker Placement
     map.on('click', function(mapE) {
       mapEvent = mapE;
-
       form.classList.remove('hidden');
       inputDistance.focus();
-        
     })
 
   },
@@ -51,14 +49,12 @@ const inputElevation = document.querySelector('.form__input--elevation');
     alert("Could not get position.");
   }
 
-
-
 );
 
-  // form event listener to check if submitted/completed
+// form event listener to check if submitted/completed
 form.addEventListener('submit', function(e){
   e.preventDefault()
-  
+
   console.log(mapEvent)
   const lat = mapEvent.latlng.lat
   const lng = mapEvent.latlng.lng  
