@@ -55,6 +55,7 @@ const inputElevation = document.querySelector('.form__input--elevation');
         }))
         .setPopupContent('Workout')
         .openPopup();
+        document.getElementsByClassName('.running-popup').reset();
 
         form.classList.remove('hidden');
         inputDistance.focus();
@@ -62,7 +63,6 @@ const inputElevation = document.querySelector('.form__input--elevation');
         // form event listener to check if submitted/completed
         form.addEventListener('submit', function(e){
           e.preventDefault()
-          document.getElementsByClassName('.running-popup').reset();
         
         })
 
