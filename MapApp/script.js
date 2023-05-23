@@ -58,6 +58,9 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
         form.classList.remove('hidden');
         inputDistance.focus();
+        
+        // form event listener to check if submitted/completed
+        form.addEventListener('submit', function(){})
 
     })
 
