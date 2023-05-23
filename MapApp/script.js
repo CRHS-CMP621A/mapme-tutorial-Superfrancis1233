@@ -62,7 +62,7 @@ const inputElevation = document.querySelector('.form__input--elevation');
         // form event listener to check if submitted/completed
         form.addEventListener('submit', function(e){
           e.preventDefault()
-          document.getElementsByClassName('running-popup').reset();
+          document.getElementById('.form').reset();
         
         })
 
