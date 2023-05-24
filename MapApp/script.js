@@ -46,7 +46,7 @@ class Cycling extends Workout {
 // Class Testing
 
 const run1 = new Running([39,-12],5.2,23.345);
-const cycling1 = new Running([39,-12],5.2,23.345);
+const cycling1 = new Cycling([39,-12],5.2,23.345);
 console.log(run1, cycling1)
 
   navigator.geolocation.getCurrentPosition(
