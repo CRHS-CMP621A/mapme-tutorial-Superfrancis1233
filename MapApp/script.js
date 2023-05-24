@@ -30,17 +30,47 @@ class Workout {
 }
 
 class Running extends Workout {
+
+  type = "Running";
+
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
+    this.calcPace();
+    this.setDescription();
   }
+
+  calcPace() {
+    this.pace = this.duration / this.distance;
+    return this.pace
+  }
+
+  setDescription() {
+    this.description = `${this.type} on ${this.date.toDateString()}`
+  }
+
 }
 
 class Cycling extends Workout {
+
+  type = "Cycling";
+
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
     this.elevation = elevationGain;
+    this.calcSpeed();
+    this.setDescription();
   }
+
+  calcSpeed() {
+    this.speed = this.duration / this.distance;
+    return this.pace
+  }
+
+  setDescription() {
+    this.description = `${this.type} on ${this.date.toDateString()}`
+  }
+
 }
 
 //// Class Testing
@@ -118,6 +148,64 @@ form.addEventListener('submit', function(e){
     .openPopup();
 
     document.getElementById("workoutform").reset();
+
+  // Render Workouts in List
+  let html;
+  
+  if (type === "running") {
+    html =  `<li class="workout workout--running" data-id=${workout.id}>
+                <h2 class="workout__title">${workout.description}</h2>
+                <div class="workout__details">
+                  <span class="workout__icon">🏃‍♂️</span>
+                  <span class="workout__value">${workout.distance}</span>
+                  <span class="workout__unit">km</span>
+                </div>
+                <div class="workout__details">
+                  <span class="workout__icon">⏱</span>
+                  <span class="workout__value">${workout.duration}</span>
+                  <span class="workout__unit">min</span>
+                </div>
+                <div class="workout__details">
+                  <span class="workout__icon">⚡️</span>
+                  <span class="workout__value">${workout.pace}</span>
+                  <span class="workout__unit">min/km</span>
+                </div>
+                <div class="workout__details">
+                  <span class="workout__icon">🦶🏼</span>
+                  <span class="workout__value">${workout.cadence}</span>
+                  <span class="workout__unit">spm</span>
+                </div>
+              </li>`;
+  }
+
+  if (type === "cycling") {
+    html =  `<li class="workout workout--cycling" data-id=${workout.id}>
+                <h2 class="workout__title">${workout.description}</h2>
+                <div class="workout__details">
+                  <span class="workout__icon">🚴‍♀️</span>
+                  <span class="workout__value">${workout.distance}</span>
+                  <span class="workout__unit">km</span>
+                </div>
+                <div class="workout__details">
+                  <span class="workout__icon">⏱</span>
+                  <span class="workout__value">${workout.duration}</span>
+                  <span class="workout__unit">min</span>
+                </div>
+                <div class="workout__details">
+                  <span class="workout__icon">⚡️</span>
+                  <span class="workout__value">${workout.speed}</span>
+                  <span class="workout__unit">km/h</span>
+                </div>
+                <div class="workout__details">
+                  <span class="workout__icon">⛰</span>
+                  <span class="workout__value">${workout.elevation}</span>
+                  <span class="workout__unit">m</span>
+                </div>
+              </li>`;
+  }
+
+  form.insertAdjacentHTML("afterend", html);
+  
 })
 
 //Event Listener Toggle form input type change. 
