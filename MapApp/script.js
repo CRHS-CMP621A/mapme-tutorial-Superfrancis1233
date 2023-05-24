@@ -15,7 +15,7 @@ const inputElevation = document.querySelector('.form__input--elevation');
 
   let map;
   let mapEvent;
-
+  let workouts = []
 
 // Classes
 class Workout {
@@ -43,28 +43,23 @@ class Cycling extends Workout {
   }
 }
 
-// Class Testing
+//// Class Testing
+// const run1 = new Running([39,-12],5.2,23.345);
+// const cycling1 = new Cycling([39,-12],5.2,23.345);
+// console.log(run1, cycling1)
 
-const run1 = new Running([39,-12],5.2,23.345);
-const cycling1 = new Cycling([39,-12],5.2,23.345);
-console.log(run1, cycling1)
 
+  // Map & Positioning
   navigator.geolocation.getCurrentPosition(
   function (position) {
-    // console.log(position);
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    console.log("https://www.google.com/maps/@" + longitude + "," + latitude);
-
     const coords = [latitude, longitude]
-
     map = L.map('map').setView(coords, 13);
-
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
 
     // Map Marker Placement
     map.on('click', function(mapE) {
@@ -72,7 +67,8 @@ console.log(run1, cycling1)
       form.classList.remove('hidden');
       inputDistance.focus();
     })
-
+  
+  // Position Error
   },
   function() {
     alert("Could not get position.");
@@ -84,9 +80,30 @@ console.log(run1, cycling1)
 form.addEventListener('submit', function(e){
   e.preventDefault()
 
-  console.log(mapEvent)
+  // Get data from the Form
+  const type = inputType.value;
+  const distance = Number(inputDistance.value);
+  const duration = Number(inputDuration.value);
   const lat = mapEvent.latlng.lat
   const lng = mapEvent.latlng.lng  
+
+  let workout;
+
+  // Create Running Object if type is Running
+  if (type === 'running') {
+    const cadence = Number(inputCadence.value)
+    workout = new Running([lat,lng], distance, duration, cadence)
+    workouts.push(workout)
+  }
+
+  // Create Running Object if type is Running
+  if (type === 'cycling') {
+    const elevation = Number(inputElevation.value)
+    workout = new Cycling([lat,lng], distance, duration, elevation)
+    workouts.push(workout)
+  }
+
+  console.log(workouts)
 
   L.marker([lat, lng]).addTo(map)
     .bindPopup(L.popup({
