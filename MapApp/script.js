@@ -16,6 +16,39 @@ const inputElevation = document.querySelector('.form__input--elevation');
   let map;
   let mapEvent;
 
+
+// Classes
+class Workout {
+  date = new Date();
+  id = (Date.now() + '').slice(-10);
+
+  constructor(coords, distance, duration) {
+    this.coords = coords;
+    this.distance = distance;
+    this.duration = duration;
+  }
+}
+
+class Running extends Workout {
+  constructor(coords, distance, duration, cadence) {
+    super(coords, distance, duration);
+    this.cadence = cadence;
+  }
+}
+
+class Cycling extends Workout {
+  constructor(coords, distance, duration, elevationGain) {
+    super(coords, distance, duration);
+    this.elevation = elevationGain;
+  }
+}
+
+// Class Testing
+
+const run1 = new Running([39,-12],5.2,23.345);
+const cycling1 = new Running([39,-12],5.2,23.345);
+console.log(run1, cycling1)
+
   navigator.geolocation.getCurrentPosition(
   function (position) {
     // console.log(position);
