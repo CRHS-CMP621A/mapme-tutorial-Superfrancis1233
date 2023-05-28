@@ -91,6 +91,15 @@ class Cycling extends Workout {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
+
+    // Load Data
+    const data = JSON.parse(localStorage.getItem("workouts"))
+
+    if (data) {
+      workouts = data;
+      console.log(data);
+    }
+
     // Map Marker Placement
     map.on('click', function(mapE) {
       mapEvent = mapE;
@@ -124,6 +133,9 @@ form.addEventListener('submit', function(e){
     const cadence = Number(inputCadence.value)
     workout = new Running([lat,lng], distance, duration, cadence)
     workouts.push(workout)
+
+    // Store Workouts Array
+    localStorage.setItem("workouts", JSON.stringify(workouts));
   }
 
   // Create Running Object if type is Running
@@ -151,6 +163,10 @@ form.addEventListener('submit', function(e){
 
   // Render Workouts in List
   let html;
+  for (let workout of workouts) {
+    let lat = workout.coords[0];
+    let lng = workout.coords[1];
+  }
   
   if (type === "running") {
     html =  `<li class="workout workout--running" data-id=${workout.id}>
@@ -207,6 +223,22 @@ form.addEventListener('submit', function(e){
   form.insertAdjacentHTML("afterend", html);
   
 })
+
+// Add Map Move Code
+containerWorkouts.addEventListener("click", function(e) {
+
+const workoutEl = e.target.closest("workout");
+if(!workoutEl) return;
+
+const workout = workouts.find((work) => work.id === workoutEl.dataset.id)
+map.setView(workout.coords, 13, {
+  animate: true,
+  pan: {
+    duration: 1,
+  },
+});
+
+});
 
 //Event Listener Toggle form input type change. 
 inputType.addEventListener('change', function(){
